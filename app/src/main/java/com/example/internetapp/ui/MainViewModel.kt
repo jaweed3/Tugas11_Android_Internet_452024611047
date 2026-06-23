@@ -5,22 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.internetapp.model.Product
-import com.example.internetapp.network.FakeStoreApiService
-import com.squareup.moshi.Moshi
+import com.example.internetapp.network.API
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 class MainViewModel : ViewModel() {
-
-    private val moshi = Moshi.Builder().build()
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(FakeStoreApiService.BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .build()
-
-    private val apiService = retrofit.create(FakeStoreApiService::class.java)
 
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> = _products
@@ -40,7 +28,7 @@ class MainViewModel : ViewModel() {
             _isLoading.value = true
             _errorMessage.value = null
             try {
-                val result = apiService.getProducts()
+                val result = API.retrofitService.getProducts()
                 _products.value = result
             } catch (e: Exception) {
                 _errorMessage.value = e.message ?: "Unknown error occurred"
