@@ -5,7 +5,7 @@
 - **NIM**: 452024611047
 
 ## Deskripsi
-Aplikasi Android untuk menampilkan daftar properti dari Mars (Mars Real Estate) yang diambil dari RESTful API menggunakan **Retrofit**, parsing JSON dengan **Moshi**, dan menampilkan gambar menggunakan **Glide**. Data ditampilkan dalam GridLayout 2 kolom menggunakan RecyclerView dengan DataBinding.
+Aplikasi Android untuk menampilkan daftar produk dari **FakeStore API** yang diambil dari RESTful API menggunakan **Retrofit**, parsing JSON dengan **Moshi**, dan menampilkan gambar menggunakan **Glide**. Data ditampilkan dalam GridLayout 2 kolom menggunakan RecyclerView dengan DataBinding.
 
 ## Fitur
 - Koneksi internet menggunakan Retrofit + Moshi
@@ -16,9 +16,9 @@ Aplikasi Android untuk menampilkan daftar properti dari Mars (Mars Real Estate) 
 - GridLayout 2 kolom dengan MaterialCardView
 
 ## Screenshot
-*(Tambahkan screenshot aplikasi di sini)*
 
-![Screenshot Aplikasi](screenshot/app_screenshot.png)
+![Screenshot 1](ss3.jpg)
+![Screenshot 2](ss4.jpg)
 
 ## Perbedaan Normal Permission vs Dangerous Permission
 
