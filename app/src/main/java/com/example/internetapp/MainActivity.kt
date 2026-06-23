@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.internetapp.databinding.ActivityMainBinding
 import com.example.internetapp.ui.MainViewModel
-import com.example.internetapp.ui.MarsPropertyAdapter
+import com.example.internetapp.ui.ProductAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: MarsPropertyAdapter
+    private lateinit var adapter: ProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        adapter = MarsPropertyAdapter()
+        adapter = ProductAdapter()
 
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(this@MainActivity, 2)
@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.properties.observe(this) { properties ->
-            adapter.submitList(properties)
+        viewModel.products.observe(this) { products ->
+            adapter.submitList(products)
         }
     }
 }

@@ -1,17 +1,14 @@
 package com.example.internetapp.network
 
-import com.example.internetapp.model.MarsProperty
+import com.example.internetapp.model.Product
 import retrofit2.http.GET
-import retrofit2.http.Query
 
-interface MarsApiService {
+interface FakeStoreApiService {
 
-    @GET("realestate")
-    suspend fun getProperties(
-        @Query("filter") filter: String? = null
-    ): List<MarsProperty>
+    @GET("products")
+    suspend fun getProducts(): List<Product>
 
     companion object {
-        const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
+        const val BASE_URL = "https://fakestoreapi.com/"
     }
 }

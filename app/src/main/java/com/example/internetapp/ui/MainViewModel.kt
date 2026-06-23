@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.internetapp.model.MarsProperty
-import com.example.internetapp.network.MarsApiService
+import com.example.internetapp.model.Product
+import com.example.internetapp.network.FakeStoreApiService
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
@@ -16,14 +16,14 @@ class MainViewModel : ViewModel() {
     private val moshi = Moshi.Builder().build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(MarsApiService.BASE_URL)
+        .baseUrl(FakeStoreApiService.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    private val marsApiService = retrofit.create(MarsApiService::class.java)
+    private val apiService = retrofit.create(FakeStoreApiService::class.java)
 
-    private val _properties = MutableLiveData<List<MarsProperty>>()
-    val properties: LiveData<List<MarsProperty>> = _properties
+    private val _products = MutableLiveData<List<Product>>()
+    val products: LiveData<List<Product>> = _products
 
     private val _isLoading = MutableLiveData(true)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -32,16 +32,16 @@ class MainViewModel : ViewModel() {
     val errorMessage: LiveData<String?> = _errorMessage
 
     init {
-        loadProperties()
+        loadProducts()
     }
 
-    fun loadProperties(filter: String? = null) {
+    fun loadProducts() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
             try {
-                val result = marsApiService.getProperties(filter)
-                _properties.value = result
+                val result = apiService.getProducts()
+                _products.value = result
             } catch (e: Exception) {
                 _errorMessage.value = e.message ?: "Unknown error occurred"
             } finally {

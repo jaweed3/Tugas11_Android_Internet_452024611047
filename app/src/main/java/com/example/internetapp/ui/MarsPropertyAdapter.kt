@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.internetapp.databinding.ItemMarsPropertyBinding
-import com.example.internetapp.model.MarsProperty
+import com.example.internetapp.model.Product
 
-class MarsPropertyAdapter : ListAdapter<MarsProperty, MarsPropertyAdapter.ViewHolder>(DiffCallback) {
+class ProductAdapter : ListAdapter<Product, ProductAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemMarsPropertyBinding.inflate(
@@ -24,18 +24,18 @@ class MarsPropertyAdapter : ListAdapter<MarsProperty, MarsPropertyAdapter.ViewHo
     class ViewHolder(private val binding: ItemMarsPropertyBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(property: MarsProperty) {
-            binding.property = property
+        fun bind(product: Product) {
+            binding.product = product
             binding.executePendingBindings()
         }
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<MarsProperty>() {
-        override fun areItemsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+    object DiffCallback : DiffUtil.ItemCallback<Product>() {
+        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem == newItem
         }
     }

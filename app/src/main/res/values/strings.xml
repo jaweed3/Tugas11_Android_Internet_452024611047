@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mars Real Estate</string>
+    <string name="app_name">FakeStore</string>
     <string name="loading">Loading…</string>
     <string name="error_network">Failed to load data. Check your connection.</string>
-    <string name="for_sale">For Sale</string>
-    <string name="for_rent">For Rent</string>
-    <string name="price_format">Rp %,.0f</string>
 </resources>
